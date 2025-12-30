@@ -23,5 +23,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::policy(User::class, UserPolicy::class);
+
+        // LogViewer authorization: Only admins can view logs
+        Gate::define('viewLogViewer', function (User $user) {
+            return $user->isAdmin();
+        });
     }
 }

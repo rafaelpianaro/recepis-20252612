@@ -15,6 +15,7 @@ export interface NavItem {
     href: NonNullable<InertiaLinkProps['href']>;
     icon?: LucideIcon;
     isActive?: boolean;
+    external?: boolean;  // Para links externos (não usar Inertia navigation)
 }
 
 export type AppPageProps<
