@@ -16,6 +16,7 @@ export interface NavItem {
     icon?: LucideIcon;
     isActive?: boolean;
     external?: boolean;  // Para links externos (não usar Inertia navigation)
+    items?: NavItem[];   // Subitems para menus colapsáveis
 }
 
 export type AppPageProps<

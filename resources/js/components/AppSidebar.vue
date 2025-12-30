@@ -14,7 +14,7 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Shield, Users, FileText } from 'lucide-vue-next';
+import { BookOpen, Folder, LayoutGrid, Shield, Users, FileText, Settings } from 'lucide-vue-next';
 import { computed } from 'vue';
 import AppLogo from './AppLogo.vue';
 
@@ -30,23 +30,30 @@ const mainNavItems = computed<NavItem[]>(() => {
         },
     ];
 
-    // Admin-only menu items
+    // Admin-only menu with subitems
     if (user.value?.role === 'admin') {
         items.push({
-            title: 'Admin',
-            href: '/admin/dashboard',
-            icon: Shield,
-        });
-        items.push({
-            title: 'Users',
-            href: '/admin/users',
-            icon: Users,
-        });
-        items.push({
-            title: 'Logs',
-            href: '/admin/logs',
-            icon: FileText,
-            external: true,  // Link externo - não usar Inertia navigation
+            title: 'Admin Config',
+            href: '#',  // Não é clicável diretamente
+            icon: Settings,
+            items: [
+                {
+                    title: 'Dashboard',
+                    href: '/admin/dashboard',
+                    icon: Shield,
+                },
+                {
+                    title: 'Users',
+                    href: '/admin/users',
+                    icon: Users,
+                },
+                {
+                    title: 'Logs',
+                    href: '/admin/logs',
+                    icon: FileText,
+                    external: true,  // Link externo
+                },
+            ],
         });
     }
 
